@@ -19,13 +19,13 @@ const CONFIG = {
         sortBy: 'updated', // Sort projects by 'stars' or 'updated'
         limit: 8, // How many projects to display.
         exclude: {
-          forks: false, // Forked projects will not be displayed if set to true.
-          projects: [], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
+          forks: true, // Forked projects will not be displayed if set to true.
+          projects: ['fsiddiqi03/fsiddiqi03', 'fsiddiqi03/portfolio', 'fsiddiqi03/Personal-Portfolio',], // These projects will not be displayed. example: ['arifszn/my-project1', 'arifszn/my-project2']
         },
       },
       manual: {
         // Properties for manually specifying projects
-        projects: ['fsiddiqi03/fsiddiqi03', 'fsiddiqi03/portfolio', 'fsiddiqi03/Personal-Portfolio', ], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
+        projects: [ ], // List of repository names to display. example: ['arifszn/my-project1', 'arifszn/my-project2']
       },
     },
     external: {
@@ -40,15 +40,15 @@ const CONFIG = {
   seo: {
     title: 'Portfolio of Faris Siddiqi',
     description: 'Incoming SWE intern @ RR Donnelley | CS @ Loyola University Chicago',
-    imageURL: '',
+    imageURL: 'https://drive.google.com/file/d/1eaNHOthgH_6-LA6b8ZmEWESmmQwvstki/view?usp=sharing',
   },
   social: {
-    linkedin: 'https://www.linkedin.com/in/faris-siddiqi-04aa592a1/',
+    linkedin: 'faris-siddiqi',
     twitter: '',
     mastodon: '',
     researchGate: '',
     facebook: '',
-    instagram: 'https://www.instagram.com/faris.visuals/',
+    instagram: 'faris.visuals',
     youtube: '', // example: 'pewdiepie'
     dribbble: '',
     behance: '',
@@ -63,7 +63,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      '', // Empty fileUrl will hide the `Download Resume` button.
+      'https://drive.google.com/file/d/1p7aoCvFEU00XgShhJP_1WqaRO8xnXoQN/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     'Java',
@@ -117,8 +117,8 @@ const CONFIG = {
   ],
   // Display articles from your medium or dev account. (Optional)
   blog: {
-    source: 'dev', // medium | dev
-    username: 'arifszn', // to hide blog section, keep it empty
+    source: '', // medium | dev
+    username: '', // to hide blog section, keep it empty
     limit: 2, // How many articles to display. Max is 10.
   },
   googleAnalytics: {
