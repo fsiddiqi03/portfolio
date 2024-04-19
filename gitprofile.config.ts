@@ -69,7 +69,7 @@ const CONFIG = {
     'Java',
     'AWS',
     'Terraform',
-    'Python'
+    'Python',
     'React.js',
     'Node.js',
     'MySQL',
