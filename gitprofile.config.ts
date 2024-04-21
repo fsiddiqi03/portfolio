@@ -40,7 +40,7 @@ const CONFIG = {
   seo: {
     title: 'Portfolio of Faris Siddiqi',
     description: 'Incoming SWE intern @ RR Donnelley | CS @ Loyola University Chicago',
-    imageURL: 'https://drive.google.com/file/d/1eaNHOthgH_6-LA6b8ZmEWESmmQwvstki/view?usp=sharing',
+    imageURL: 'https://drive.google.com/file/d/1KMH1udCiKqNafxnHfTT5Zc0iaUPN0Ily/view?usp=sharing',
   },
   social: {
     linkedin: 'faris-siddiqi',
