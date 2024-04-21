@@ -40,7 +40,7 @@ const CONFIG = {
   seo: {
     title: 'Portfolio of Faris Siddiqi',
     description: 'Incoming SWE intern @ RR Donnelley | CS @ Loyola University Chicago',
-    imageURL: 'https://drive.google.com/file/d/1KMH1udCiKqNafxnHfTT5Zc0iaUPN0Ily/view?usp=sharing',
+    imageURL: '',
   },
   social: {
     linkedin: 'faris-siddiqi',
@@ -63,7 +63,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      'https://drive.google.com/file/d/1p7aoCvFEU00XgShhJP_1WqaRO8xnXoQN/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
+      'https://drive.google.com/file/d/1KMH1udCiKqNafxnHfTT5Zc0iaUPN0Ily/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     'Java',
