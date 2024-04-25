@@ -90,7 +90,7 @@ const CONFIG = {
       company: 'RR Donnelley',
       position: 'Software Engineer Intern',
       from: 'May 2024',
-      to: 'August 20024',
+      to: 'August 2024',
       companyLink: '',
     },
     {
