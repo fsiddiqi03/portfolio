@@ -39,7 +39,7 @@ const CONFIG = {
   },
   seo: {
     title: 'Portfolio of Faris Siddiqi',
-    description: 'Incoming SWE intern @ RR Donnelley | CS @ Loyola University Chicago',
+    description: 'Database Devloper Intern @ RR Donnelley | CS @ Loyola University Chicago',
     imageURL: '',
   },
   social: {
@@ -79,16 +79,20 @@ const CONFIG = {
     'HTML',
     'TypeScript',
     'REST API',
-    'NoSql',
+    'NoSQL',
     'SQL',
     'GCP',
-    'GO',
+    'Go',
     'JavaScript',
+    'TensorFlow',
+    'NumPy',
+    'Pandas',
+    'Scikit-Learn',
   ],
   experiences: [
     {
       company: 'RR Donnelley',
-      position: 'Software Engineer Intern',
+      position: 'Database Developer Intern',
       from: 'May 2024',
       to: 'August 2024',
       companyLink: '',
@@ -102,7 +106,7 @@ const CONFIG = {
     },
   ],
   certifications: [
-   
+   'AWS Certified Cloud Practitioner'
   ],
   educations: [
     {
