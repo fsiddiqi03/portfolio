@@ -92,7 +92,7 @@ const CONFIG = {
   experiences: [
     {
       company: 'RR Donnelley',
-      position: 'Database Developer Intern',
+      position: 'Software Engineer Intern',
       from: 'May 2024',
       to: 'August 2024',
       companyLink: '',
