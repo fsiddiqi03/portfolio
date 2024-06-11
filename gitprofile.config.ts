@@ -16,7 +16,7 @@ const CONFIG = {
       header: 'Github Projects',
       mode: 'automatic', // Mode can be: 'automatic' or 'manual'
       automatic: {
-        sortBy: 'updated', // Sort projects by 'stars' or 'updated'
+        sortBy: 'stars', // Sort projects by 'stars' or 'updated'
         limit: 8, // How many projects to display.
         exclude: {
           forks: true, // Forked projects will not be displayed if set to true.
@@ -39,7 +39,7 @@ const CONFIG = {
   },
   seo: {
     title: 'Portfolio of Faris Siddiqi',
-    description: 'Database Devloper Intern @ RR Donnelley | CS @ Loyola University Chicago',
+    description: 'SWE Intern @ RR Donnelley | CS @ Loyola University Chicago',
     imageURL: '',
   },
   social: {
@@ -63,7 +63,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      'https://drive.google.com/file/d/1GdzMCjextCEoeVefax0hhzjtRK26Hih-/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
+      'https://drive.google.com/file/d/1j59U2MnYgtFXsVfRXWEL-c30TacURXdV/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     'Java',
