@@ -63,7 +63,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      'https://drive.google.com/file/d/1dssuDNfSvyX7jwRDVB7DPovrldi3mEMI/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
+      'https://drive.google.com/file/d/1YunM3q-H7ZBLnRd-wmk59smAB0VQhENS/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     'Java',
@@ -91,6 +91,13 @@ const CONFIG = {
   ],
   experiences: [
     {
+      company: 'Headstarter AI',
+      position: 'Software Engineer Fellow',
+      from: 'July 2024',
+      to: 'September 2024',
+      companyLink: '',
+    },
+    {
       company: 'RR Donnelley',
       position: 'Software Engineer Intern',
       from: 'May 2024',
@@ -112,7 +119,7 @@ const CONFIG = {
     {
       institution: 'Loyola University Chicago',
       degree: 'BS in Computer Science',
-      from: '2021',
+      from: '2022',
       to: '2026',
     },
   ],
@@ -134,7 +141,7 @@ const CONFIG = {
     snippetVersion: 6,
   },
   themeConfig: {
-    defaultTheme: 'lofi',
+    defaultTheme: 'dark',
 
     // Hides the switch in the navbar
     // Useful if you want to support a single color mode
