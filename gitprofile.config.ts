@@ -63,7 +63,7 @@ const CONFIG = {
   },
   resume: {
     fileUrl:
-      'https://drive.google.com/file/d/1YunM3q-H7ZBLnRd-wmk59smAB0VQhENS/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
+      'https://drive.google.com/file/d/1iqUuCjanuElEoio7ozq1ZaUVc8t-qvGY/view?usp=sharing', // Empty fileUrl will hide the `Download Resume` button.
   },
   skills: [
     'Java',
@@ -90,6 +90,13 @@ const CONFIG = {
     'Scikit-Learn',
   ],
   experiences: [
+    {
+      company: 'Hireology',
+      position: 'DevOps Engineering Intern',
+      from: 'May 2025',
+      to: 'August 2025',
+      companyLink: '',
+    },
     {
       company: 'Headstarter AI',
       position: 'Software Engineer Fellow',
