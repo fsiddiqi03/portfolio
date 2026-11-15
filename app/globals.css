@@ -1,0 +1,124 @@
+:root {
+  --sky: #0b0b0a;
+  --paint: #e1a12f;
+  --cream: #fce7c4;
+  --umber: #241003;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--sky);
+  scrollbar-color: #8a5a17 var(--sky);
+}
+body { margin: 0; background: var(--sky); color: var(--cream); }
+::selection { background: var(--paint); color: var(--umber); }
+img { display: block; user-select: none; -webkit-user-drag: none; }
+
+/* The scroll length of the pan. The stage stays pinned while it plays. */
+.track { display: block; height: 260vh; }
+.stage {
+  position: sticky; top: 0;
+  height: 100vh; height: 100svh;
+  overflow: hidden;
+  background: var(--sky);
+  /* 0 = the station screen, 1 = the empty-space screen to its left. */
+  --p: 0;
+  /* One screen of the painting is 16:9 and always covers the window. */
+  --sw: max(100vw, 100svh * 16 / 9);
+  --sh: calc(var(--sw) * 9 / 16);
+  --sx: calc(50% - var(--sw) / 2);
+  --sy: calc(50% - var(--sh) / 2);
+}
+
+/* The painting is two screens wide: empty space on the left, the station on the right. */
+.camera {
+  position: absolute;
+  left: calc(var(--sx) - var(--sw)); top: var(--sy);
+  width: calc(var(--sw) * 2); height: var(--sh);
+  transform: translate3d(calc(var(--p) * var(--sw)), 0, 0);
+  will-change: transform;
+}
+.plate { position: absolute; top: 0; width: 50%; height: 100%; pointer-events: none; }
+.plate.left { left: 0; }
+.plate.right { left: 50%; }
+
+/* Beam glow: a brightened copy of the teal areas, screened on top, pulsing. */
+.glow { mix-blend-mode: screen; opacity: 0; animation: glow 4s ease-in-out infinite; }
+@keyframes glow {
+  0%, 15% { opacity: 0; }
+  35% { opacity: 0.85; }
+  60%, 100% { opacity: 0; }
+}
+
+/* One screen of the painting, fixed to the window: the astronaut and name are placed in it. */
+.screen {
+  position: absolute;
+  left: var(--sx); top: var(--sy);
+  width: var(--sw); height: var(--sh);
+  pointer-events: none;
+}
+
+/* Astronaut: starts where the composite puts it, then tumbles with the camera
+   and settles on the right of the empty-space screen. The middle stays clear. */
+.astro {
+  position: absolute;
+  left: calc(54.879% + var(--p) * 11.5%);
+  top: calc(61.067% - var(--p) * 3%);
+  width: 3.632%; height: 4.233%;
+  transform: rotate(calc(29.362deg - var(--p) * 360deg)) scale(calc(1 + var(--p) * 0.7));
+}
+.astro-x, .astro-y { width: 100%; height: 100%; }
+.astro-x { animation: driftX 12s ease-in-out infinite; }
+.astro-y { animation: driftY 6s ease-in-out infinite; }
+.astro img { width: 100%; height: 100%; }
+@keyframes driftX { 0%, 100% { transform: translateX(-6%); } 50% { transform: translateX(6%); } }
+@keyframes driftY { 0%, 100% { transform: translateY(-8%); } 50% { transform: translateY(8%); } }
+
+/* The name, sized and placed from the composite. It belongs to the station screen,
+   so it slides away with the painting as the camera pans. */
+.name {
+  --w: calc(var(--sw) * 0.225);
+  --from: max(var(--sx) + var(--sw) * 0.09, 4vw);
+  position: absolute; margin: 0;
+  left: var(--from);
+  transform: translate3d(calc(var(--p) * var(--sw)), 0, 0);
+  top: max(var(--sy) + var(--sh) * 0.12, 3svh);
+  width: var(--w);
+  aspect-ratio: 720 / 513;
+  pointer-events: none;
+}
+.word { position: absolute; display: block; }
+.word img { width: 100%; height: 100%; }
+.faris { left: 0.427%; top: 1.277%; width: 76.582%; height: 80.639%; animation: floatA 11s ease-in-out infinite; }
+.siddiqi { left: 33.489%; top: 59.2%; width: 63.28%; height: 36.961%; animation: floatB 14s ease-in-out infinite; }
+.siddiqi img { transform: rotate(-5.718deg); }
+@keyframes floatA {
+  0%, 100% { transform: translate(-0.8%, 1.4%) rotate(-0.5deg); }
+  50% { transform: translate(0.8%, -1.4%) rotate(0.5deg); }
+}
+@keyframes floatB {
+  0%, 100% { transform: translate(0.9%, -1.6%) rotate(0.4deg); }
+  50% { transform: translate(-0.9%, 1.6%) rotate(-0.4deg); }
+}
+
+/* Portrait screens: the station sits along the bottom and the name gets the sky above it. */
+@media (max-aspect-ratio: 1/1) {
+  .stage {
+    --sw: min(230vw, 105svh);
+    --sx: max(50vw - var(--sw) * 0.72, 100vw - var(--sw));
+    --sy: calc(100svh - var(--sh));
+    background: url("/scene/sky.webp") center top / cover no-repeat var(--sky);
+  }
+  .camera {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%);
+    mask-image: linear-gradient(to bottom, transparent, #000 22%);
+  }
+  .name { --w: min(80vw, 46svh); --from: 6vw; top: 8svh; }
+}
+
+/* Reduced motion: the pan follows the scroll directly, with no tumble or drift. */
+@media (prefers-reduced-motion: reduce) {
+  .glow, .astro-x, .astro-y, .word { animation: none; }
+  .astro { transform: rotate(29.362deg); }
+}

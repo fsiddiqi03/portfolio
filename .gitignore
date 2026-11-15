@@ -1,0 +1,13 @@
+# Dependencies and build output
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+.vercel
+
+# AI skill and agent files
+.agent/
+.claude/
+.impeccable/
+PRODUCT.md

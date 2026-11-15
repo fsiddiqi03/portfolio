@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Space Scene</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+
+  /* Full-screen "cover" sizing that keeps every layer locked together (16:9 art). */
+  .scene {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: max(100vw, 100vh * 16 / 9);
+    aspect-ratio: 16 / 9;
+    transform: translate(-50%, -50%);
+  }
+  .scene img { position: absolute; display: block; user-select: none; pointer-events: none; }
+  .layer-full { inset: 0; width: 100%; height: 100%; }
+
+  /* Beam glow: brightened copy of the teal areas, screened on top. Pulses every 4s. */
+  .glow { mix-blend-mode: screen; opacity: 0; animation: glow 4s ease-in-out infinite; }
+  @keyframes glow {
+    0%, 15%  { opacity: 0; }
+    35%      { opacity: 0.85; }
+    60%, 100%{ opacity: 0; }
+  }
+
+  /* Astronaut: original position in the 3840x2160 art = (2202, 1272), size 162x167. */
+  .astro-x {
+    position: absolute;
+    left: 57.344%; top: 58.889%;
+    width: 4.219%; height: 7.731%;
+    animation: driftX 12s ease-in-out infinite;
+  }
+  .astro-y { width: 100%; height: 100%; animation: driftY 6s ease-in-out infinite; }
+  .astro-y img { position: static; width: 100%; height: 100%; }
+
+  /* Percentages are of the astronaut's own size, so motion scales with the screen. */
+  @keyframes driftX { 0%,100% { transform: translateX(-6%); } 50% { transform: translateX(6%); } }
+  @keyframes driftY { 0%,100% { transform: translateY(-8%); } 50% { transform: translateY(8%); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .glow, .astro-x, .astro-y { animation: none; }
+  }
+</style>
+</head>
+<body>
+  <div class="scene">
+    <img class="layer-full" src="layers/background.jpg" alt="">
+    <img class="layer-full glow" src="layers/glow.jpg" alt="">
+    <div class="astro-x"><div class="astro-y"><img src="layers/astronaut.png" alt=""></div></div>
+  </div>
+</body>
+</html>
