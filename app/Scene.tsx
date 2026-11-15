@@ -70,6 +70,35 @@ export default function Scene() {
             <img src="/scene/siddiqi.webp" alt="Siddiqi" />
           </span>
         </h1>
+
+        <section className="resume">
+          <span className="spaceman">
+            <span className="drift-x">
+              <span className="drift-y">
+                <img src="/scene/spaceman.webp" alt="" />
+              </span>
+            </span>
+          </span>
+          <h2 className="resume-label">
+            <span className="drift-x">
+              <span className="drift-y">
+                <img src="/scene/resume.webp" alt="Resume" />
+              </span>
+            </span>
+          </h2>
+          <a
+            className="arrow"
+            href="/Resume.pdf"
+            download="Faris Siddiqi Resume.pdf"
+            aria-label="Download resume (PDF)"
+          >
+            <span className="drift-x">
+              <span className="drift-y">
+                <img src="/scene/arrow.webp" alt="" />
+              </span>
+            </span>
+          </a>
+        </section>
       </div>
     </main>
   );

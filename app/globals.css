@@ -60,17 +60,17 @@ img { display: block; user-select: none; -webkit-user-drag: none; }
 }
 
 /* Astronaut: starts where the composite puts it, then tumbles with the camera
-   and settles on the right of the empty-space screen. The middle stays clear. */
+   and settles low on the right of the empty-space screen. The middle stays clear. */
 .astro {
   position: absolute;
-  left: calc(54.879% + var(--p) * 11.5%);
-  top: calc(61.067% - var(--p) * 3%);
+  left: calc(54.879% + var(--p) * 30%);
+  top: calc(61.067% + var(--p) * 12%);
   width: 3.632%; height: 4.233%;
-  transform: rotate(calc(29.362deg - var(--p) * 360deg)) scale(calc(1 + var(--p) * 0.7));
+  transform: rotate(calc(29.362deg - var(--p) * 360deg)) scale(calc(1 + var(--p) * 0.4));
 }
 .astro-x, .astro-y { width: 100%; height: 100%; }
-.astro-x { animation: driftX 12s ease-in-out infinite; }
-.astro-y { animation: driftY 6s ease-in-out infinite; }
+.astro-x, .drift-x { animation: driftX 12s ease-in-out infinite; }
+.astro-y, .drift-y { animation: driftY 6s ease-in-out infinite; }
 .astro img { width: 100%; height: 100%; }
 @keyframes driftX { 0%, 100% { transform: translateX(-6%); } 50% { transform: translateX(6%); } }
 @keyframes driftY { 0%, 100% { transform: translateY(-8%); } 50% { transform: translateY(8%); } }
@@ -78,20 +78,20 @@ img { display: block; user-select: none; -webkit-user-drag: none; }
 /* The name, sized and placed from the composite. It belongs to the station screen,
    so it slides away with the painting as the camera pans. */
 .name {
-  --w: calc(var(--sw) * 0.225);
-  --from: max(var(--sx) + var(--sw) * 0.09, 4vw);
+  --w: calc(var(--sw) * 0.18);
+  --from: max(var(--sx) + var(--sw) * 0.06, 4vw);
   position: absolute; margin: 0;
   left: var(--from);
   transform: translate3d(calc(var(--p) * var(--sw)), 0, 0);
-  top: max(var(--sy) + var(--sh) * 0.12, 3svh);
+  top: max(var(--sy) + var(--sh) * 0.08, 3svh);
   width: var(--w);
   aspect-ratio: 720 / 513;
   pointer-events: none;
 }
 .word { position: absolute; display: block; }
 .word img { width: 100%; height: 100%; }
-.faris { left: 0.427%; top: 1.277%; width: 76.582%; height: 80.639%; animation: floatA 11s ease-in-out infinite; }
-.siddiqi { left: 33.489%; top: 59.2%; width: 63.28%; height: 36.961%; animation: floatB 14s ease-in-out infinite; }
+.faris { left: 0.427%; top: 1.277%; width: 87.25%; height: 91.87%; animation: floatA 11s ease-in-out infinite; }
+.siddiqi { left: 40.5%; top: 63.5%; width: 55.69%; height: 32.53%; animation: floatB 14s ease-in-out infinite; }
 .siddiqi img { transform: rotate(-5.718deg); }
 @keyframes floatA {
   0%, 100% { transform: translate(-0.8%, 1.4%) rotate(-0.5deg); }
@@ -100,6 +100,67 @@ img { display: block; user-select: none; -webkit-user-drag: none; }
 @keyframes floatB {
   0%, 100% { transform: translate(0.9%, -1.6%) rotate(0.4deg); }
   50% { transform: translate(-0.9%, 1.6%) rotate(-0.4deg); }
+}
+
+/* Second page: the resume label, the arrow under it, and the painting spaceman
+   down and to the left, placed from the second page layout. The group belongs to
+   the empty-space screen, so it starts one screen to the left and pans in. */
+.resume {
+  --w: calc(var(--sw) * 0.3468);
+  --from: calc(var(--sx) + var(--sw) * 0.2495);
+  position: absolute; margin: 0;
+  left: calc(var(--from) - var(--sw));
+  top: calc(var(--sy) + var(--sh) * 0.242);
+  width: var(--w);
+  aspect-ratio: 1.749;
+  transform: translate3d(calc(var(--p) * var(--sw)), 0, 0);
+  pointer-events: none;
+}
+.resume > * { position: absolute; margin: 0; display: block; }
+.resume .drift-x, .resume .drift-y { display: block; }
+.resume img { width: 100%; height: auto; }
+/* The label and the arrow share one centre line (61.9% across the group). */
+.resume-label { left: 23.73%; top: 0; width: 76.27%; }
+.arrow { left: 56.46%; top: 46.75%; width: 10.78%; }
+/* The arrow is the resume download link: it brightens and dips a little on hover. */
+.arrow { pointer-events: auto; cursor: pointer; border-radius: 6px; }
+.arrow img { transition: transform 0.35s ease, filter 0.35s ease; }
+.arrow:hover img, .arrow:focus-visible img {
+  transform: translateY(4%) scale(1.06);
+  filter: drop-shadow(0 0 8px rgb(252 231 196 / 0.6)) drop-shadow(0 0 24px rgb(225 161 47 / 0.45));
+}
+.arrow:focus-visible { outline: 2px solid var(--cream); outline-offset: 6px; }
+.spaceman { left: -7%; top: 44%; width: 18.74%; transform: rotate(24deg); }
+/* The spaceman drifts like the first astronaut, but only a few pixels. */
+.resume .drift-x { animation-name: nudgeX; }
+.resume .drift-y { animation-name: nudgeY; }
+@keyframes nudgeX {
+  0%, 100% { transform: translateX(calc(var(--sw) * -0.0025)); }
+  50% { transform: translateX(calc(var(--sw) * 0.0025)); }
+}
+@keyframes nudgeY {
+  0%, 100% { transform: translateY(calc(var(--sw) * -0.0035)); }
+  50% { transform: translateY(calc(var(--sw) * 0.0035)); }
+}
+/* The label and arrow float exactly like the two words of the name. */
+.resume-label .drift-x { animation: floatA 11s ease-in-out infinite; }
+.arrow .drift-x { animation: floatB 14s ease-in-out infinite; }
+.resume-label .drift-y, .arrow .drift-y { animation: none; }
+/* A soft warm glow around the painted strokes of the label and the arrow. */
+.resume-label img, .arrow img {
+  filter: drop-shadow(0 0 6px rgb(252 231 196 / 0.35)) drop-shadow(0 0 18px rgb(225 161 47 / 0.25));
+}
+/* The name's glow breathes: a slow, gentle swell and fade, each word glowing
+   in its own paint colour (sampled from the artwork). */
+.faris { --glow: 232 84 60; }
+.siddiqi { --glow: 228 162 50; }
+.word img {
+  filter: drop-shadow(0 0 6px rgb(var(--glow) / 0.35)) drop-shadow(0 0 18px rgb(var(--glow) / 0.25));
+  animation: glowPulse 9s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgb(var(--glow) / 0.2)) drop-shadow(0 0 12px rgb(var(--glow) / 0.12)); }
+  50% { filter: drop-shadow(0 0 7px rgb(var(--glow) / 0.4)) drop-shadow(0 0 20px rgb(var(--glow) / 0.28)); }
 }
 
 /* Portrait screens: the station sits along the bottom and the name gets the sky above it. */
@@ -114,11 +175,14 @@ img { display: block; user-select: none; -webkit-user-drag: none; }
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%);
     mask-image: linear-gradient(to bottom, transparent, #000 22%);
   }
-  .name { --w: min(80vw, 46svh); --from: 6vw; top: 8svh; }
+  .name { --w: min(64vw, 37svh); --from: 4vw; top: 5svh; }
+  .resume { --w: min(88vw, 60svh); --from: 6vw; top: 18svh; }
+  .spaceman { left: 0; }
 }
 
 /* Reduced motion: the pan follows the scroll directly, with no tumble or drift. */
 @media (prefers-reduced-motion: reduce) {
-  .glow, .astro-x, .astro-y, .word { animation: none; }
+  .glow, .astro-x, .astro-y, .drift-x, .drift-y, .word { animation: none; }
+  .resume .drift-x, .resume .drift-y, .word img { animation: none; }
   .astro { transform: rotate(29.362deg); }
 }
