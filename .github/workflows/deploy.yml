@@ -33,7 +33,7 @@ jobs:
         env:
           # The project site lives under /Personal-Website-2026. When the site moves
           # to a custom domain at the root, set this to "" (or remove it).
-          NEXT_PUBLIC_BASE_PATH: /Personal-Website-2026
+          NEXT_PUBLIC_BASE_PATH: /portfolio
 
       # Stop GitHub Pages from running Jekyll, which would hide the _next/ folder.
       - run: touch out/.nojekyll
