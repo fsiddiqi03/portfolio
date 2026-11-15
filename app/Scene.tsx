@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type CSSProperties } from "react";
+import { asset } from "./asset";
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 
@@ -45,18 +46,22 @@ export default function Scene() {
 
   return (
     <main ref={track} className="track">
-      <div ref={stage} className="stage">
+      <div
+        ref={stage}
+        className="stage"
+        style={{ "--sky-image": `url("${asset("/scene/sky.webp")}")` } as CSSProperties}
+      >
         <div className="camera">
-          <img className="plate left" src="/scene/background-left.webp" alt="" />
-          <img className="plate right" src="/scene/background.webp" alt="" fetchPriority="high" />
-          <img className="plate right glow" src="/scene/glow.webp" alt="" />
+          <img className="plate left" src={asset("/scene/background-left.webp")} alt="" />
+          <img className="plate right" src={asset("/scene/background.webp")} alt="" fetchPriority="high" />
+          <img className="plate right glow" src={asset("/scene/glow.webp")} alt="" />
         </div>
 
         <div className="screen">
           <div className="astro">
             <div className="astro-x">
               <div className="astro-y">
-                <img src="/scene/astronaut.webp" alt="" />
+                <img src={asset("/scene/astronaut.webp")} alt="" />
               </div>
             </div>
           </div>
@@ -64,10 +69,10 @@ export default function Scene() {
 
         <h1 className="name">
           <span className="word faris">
-            <img src="/scene/faris.webp" alt="Faris" />
+            <img src={asset("/scene/faris.webp")} alt="Faris" />
           </span>
           <span className="word siddiqi">
-            <img src="/scene/siddiqi.webp" alt="Siddiqi" />
+            <img src={asset("/scene/siddiqi.webp")} alt="Siddiqi" />
           </span>
         </h1>
 
@@ -75,26 +80,26 @@ export default function Scene() {
           <span className="spaceman">
             <span className="drift-x">
               <span className="drift-y">
-                <img src="/scene/spaceman.webp" alt="" />
+                <img src={asset("/scene/spaceman.webp")} alt="" />
               </span>
             </span>
           </span>
           <h2 className="resume-label">
             <span className="drift-x">
               <span className="drift-y">
-                <img src="/scene/resume.webp" alt="Resume" />
+                <img src={asset("/scene/resume.webp")} alt="Resume" />
               </span>
             </span>
           </h2>
           <a
             className="arrow"
-            href="/Resume.pdf"
+            href={asset("/Resume.pdf")}
             download="Faris Siddiqi Resume.pdf"
             aria-label="Download resume (PDF)"
           >
             <span className="drift-x">
               <span className="drift-y">
-                <img src="/scene/arrow.webp" alt="" />
+                <img src={asset("/scene/arrow.webp")} alt="" />
               </span>
             </span>
           </a>

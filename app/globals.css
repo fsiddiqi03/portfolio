@@ -169,7 +169,8 @@ img { display: block; user-select: none; -webkit-user-drag: none; }
     --sw: min(230vw, 105svh);
     --sx: max(50vw - var(--sw) * 0.72, 100vw - var(--sw));
     --sy: calc(100svh - var(--sh));
-    background: url("/scene/sky.webp") center top / cover no-repeat var(--sky);
+    /* The image URL is set from Scene.tsx so it carries the base path. */
+    background: var(--sky-image) center top / cover no-repeat var(--sky);
   }
   .camera {
     -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%);
