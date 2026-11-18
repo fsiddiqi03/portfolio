@@ -204,7 +204,7 @@ export default function Scene() {
           <div className="terminal-glow" />
         </div>
         <div ref={rig} className="rig">
-          <div className="terminal">
+          <div className="terminal" role="region" aria-label="Terminal">
             <Terminal start={started} />
           </div>
         </div>

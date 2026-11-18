@@ -19,6 +19,29 @@ type MakeCommand = (cwd: string) => string | null;
 const prefersReducedMotion = () =>
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Plain text of a finished command, announced once to screen readers. Announcing
+// the screen itself would read out every typed character.
+const describe = (output: Output): string => {
+  switch (output.type) {
+    case "none":
+      return "";
+    case "text":
+      return output.text;
+    case "about":
+      return `${ABOUT.name}. ${ABOUT.summary}`;
+    case "project":
+      return `${output.project.title}. ${output.project.about}`;
+    case "download":
+      return "Downloading resume.";
+    case "help":
+      return `Commands: ${HELP.map(([command, meaning]) => `${command}, ${meaning}`).join(". ")}.`;
+    case "list":
+      return listItems(output.dir)
+        .map((item) => item.label)
+        .join(", ");
+  }
+};
+
 const downloadResume = () => {
   const link = document.createElement("a");
   link.href = asset(RESUME.path);
@@ -30,6 +53,7 @@ export default function Terminal({ start }: { start: boolean }) {
   const [entries, setEntries] = useState<Entry[]>([]);
   const [cwd, setCwd] = useState("");
   const [value, setValue] = useState("");
+  const [announcement, setAnnouncement] = useState("");
   const body = useRef<HTMLDivElement>(null);
   const input = useRef<HTMLInputElement>(null);
   const queue = useRef<Promise<void>>(Promise.resolve());
@@ -76,6 +100,7 @@ export default function Terminal({ start }: { start: boolean }) {
         cwdNow.current = result.cwd;
         setCwd(result.cwd);
         update({ typed: cmd.length, output: result.output });
+        setAnnouncement(describe(result.output));
         if (result.download) downloadResume();
         if (animate) await wait(460);
       }
@@ -148,6 +173,9 @@ export default function Terminal({ start }: { start: boolean }) {
   return (
     <>
       <div className="terminal-tear" aria-hidden="true" />
+      <p className="visually-hidden" aria-live="polite">
+        {announcement}
+      </p>
       <div
         ref={body}
         className="terminal-body"

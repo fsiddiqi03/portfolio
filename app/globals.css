@@ -116,6 +116,26 @@ img { display: block; user-select: none; -webkit-user-drag: none; }
   .name { --w: min(64vw, 37svh); left: 4vw; top: 5svh; }
 }
 
+/* The text version of the site. Fixed, so focusing a link never scrolls the zoom. */
+.summary { position: fixed; left: 0; top: 0; width: 1px; height: 1px; }
+.summary ul { margin: 0; padding: 0; list-style: none; }
+.visually-hidden, .summary-link:not(:focus-visible) {
+  position: fixed;
+  width: 1px; height: 1px;
+  margin: -1px; padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+.summary-link:focus-visible {
+  position: fixed; left: 16px; top: 16px; z-index: 10;
+  padding: 8px 12px;
+  background: var(--sky);
+  color: var(--cream);
+  outline: 2px solid var(--paint);
+  outline-offset: 2px;
+}
+
 /* Reduced motion: the zoom follows the scroll directly, with no drift or pulsing. */
 @media (prefers-reduced-motion: reduce) {
   .glow, .word, .word img { animation: none; }
